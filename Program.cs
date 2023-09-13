@@ -5,78 +5,60 @@ class Program
     static void Main()
     {
         Console.WriteLine("Выберите задачу:");
-        Console.WriteLine("1. Определить максимальное из трех чисел");
-        Console.WriteLine("2. Определить максимальное из двух чисел");
-        Console.WriteLine("3. Проверить, является ли число четным");
-        Console.WriteLine("4. Вывести все четные числа от 1 до N");
+        Console.WriteLine("1. выводит третью цифру заданного числа или сообщает, что третьей цифры нет.");
+        Console.WriteLine("2. принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным");
 
         int choice = int.Parse(Console.ReadLine());
 
         switch (choice)
         {
             case 1:
-                MaxOfThreeNumbers();
+                ThirdDigit();
                 break;
             case 2:
-                MaxOfTwoNumbers();
-                break;
-            case 3:
-                CheckIfEven();
-                break;
-            case 4:
-                PrintEvenNumbers();
+                WeekEnd();
                 break;
             default:
                 Console.WriteLine("Неверный выбор.");
                 break;
         }
     }
-
-    static void MaxOfThreeNumbers()
-    {
-        Console.Write("Введите первое число: ");
-        int a = int.Parse(Console.ReadLine());
-
-        Console.Write("Введите второе число: ");
-        int b = int.Parse(Console.ReadLine());
-
-        Console.Write("Введите третье число: ");
-        int c = int.Parse(Console.ReadLine());
-
-        int max = Math.Max(a, Math.Max(b, c));
-
-        Console.WriteLine($"Максимальное число: {max}");
-    }
-
-    static void MaxOfTwoNumbers()
-    {
-        Console.Write("Введите первое число: ");
-        int a = int.Parse(Console.ReadLine());
-
-        Console.Write("Введите второе число: ");
-        int b = int.Parse(Console.ReadLine());
-
-        Console.WriteLine($"Max: {((a>b)?a:b)}");
-
-    }
-
-    static void CheckIfEven()
-    {
-        Console.Write("Введите число: ");
-        int num = int.Parse(Console.ReadLine());
-        Console.WriteLine($"Число {((num % 2 != 0)?"не":"")}четное.");
-    }
-
-    static void PrintEvenNumbers()
-    {
-        Console.Write("Введите число N: ");
-        int N = int.Parse(Console.ReadLine());
-
-        Console.WriteLine("Четные числа от 1 до N:");
-
-        for (int i = 2; i <= N; i += 2)
+    static void ThirdDigit()
+    {        
+        Console.Write("Введите целое число: ");
+        if (int.TryParse(Console.ReadLine(), out int num))
         {
-            Console.WriteLine(i);
+        string numStr = num.ToString();
+
+        if (numStr.Length >= 3)
+        {
+            char thirdChar = numStr[2];
+            Console.WriteLine(thirdChar);
+        } else {
+            Console.WriteLine("Третьей цифры нет.");
+        }} else {
+            Console.WriteLine("Не число.");
+        }
+
+    }
+
+    static void WeekEnd() {
+ 
+        Console.Write("Введите день недели: ");
+        if (int.TryParse(Console.ReadLine(), out int weekDay))
+        {
+            if (weekDay<1||weekDay>7) {
+             Console.WriteLine("Не день недели.");
+           } else {
+            if (weekDay>5) {
+             Console.WriteLine("да");
+            } else {
+             Console.WriteLine("нет");
+            }
+
+           }
+        } else {
+            Console.WriteLine("не число");
         }
     }
 }
