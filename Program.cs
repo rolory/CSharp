@@ -5,9 +5,12 @@ class Program
     static void Main()
     {
         Console.WriteLine("Выберите задачу:");
-        Console.WriteLine("1. принимает на вход два числа (A и B) и возводит число A в натуральную степень B.");
-        Console.WriteLine("2. принимает на вход число и выдаёт сумму цифр в числе");
-        Console.WriteLine("3. задаёт массив из 8 элементов и выводит их на экран");
+        Console.WriteLine("1. 25: принимает на вход два числа (A и B) и возводит число A в натуральную степень B.");
+        Console.WriteLine("2. 27: принимает на вход число и выдаёт сумму цифр в числе");
+        Console.WriteLine("3. 29: задаёт массив из 8 элементов и выводит их на экран");
+        Console.WriteLine("4. 34: Подсчет четных чисел в массиве");
+        Console.WriteLine("5. 36: Сумма элементов на нечетных позициях");
+        Console.WriteLine("6. 38: Разница между максимальным и минимальным элементами");
 
         int choice = int.Parse(Console.ReadLine());
 
@@ -21,6 +24,15 @@ class Program
                 break;
             case 3:
                 ArrayEight();
+                break;
+            case 4:
+                EventCount();
+                break;
+            case 5:
+                UnevenSum();
+                break;
+            case 6:
+                MaxMinDifference();
                 break;
             default:
                 Console.WriteLine("Неверный выбор.");
@@ -54,8 +66,8 @@ class Program
     }
     static void ArrayEight()
     {
-       int[] arr = new int[8];
-       Random random = new Random();
+        int[] arr = new int[8];
+        Random random = new Random();
 
         for (int i = 0; i < 8; i++)
         {
@@ -64,5 +76,93 @@ class Program
 
         Console.WriteLine("Массив:");
         Console.WriteLine("[" + string.Join(", ", arr) + "]");
+    }
+
+    static void EventCount()
+    {
+        int[] array = new int[4];
+
+        Random random = new Random();
+
+        for (int i = 0; i < 4; i++)
+        {
+            array[i] = random.Next(100, 1000);
+        }
+
+        Console.WriteLine("Массив:");
+        Console.WriteLine("[" + string.Join(", ", array) + "]");
+        int evenCount = 0;
+
+        foreach (int number in array)
+        {
+            if (number % 2 == 0)
+            {
+                evenCount++;
+            }
+        }
+
+        Console.WriteLine($"Количество четных чисел в массиве: {evenCount}");
+
+    }
+    static void UnevenSum()
+    {
+        int[] array = new int[4];
+
+        Random random = new Random();
+
+        for (int i = 0; i < 4; i++)
+        {
+            array[i] = random.Next(-100, 100);
+        }
+
+        Console.WriteLine("Массив:");
+        Console.WriteLine("[" + string.Join(", ", array) + "]");
+
+        int sum = 0;
+
+        for (int i = 1; i < array.Length; i += 2)
+        {
+            sum += array[i];
+        }
+
+        Console.WriteLine($"Сумма элементов на нечетных позициях: {sum}");
+    }
+    static void MaxMinDifference()
+    {
+        int arrayLength = 5;
+        double[] array = new double[arrayLength];
+
+        Random random = new Random();
+        for (int i = 0; i < arrayLength; i++)
+        {
+            array[i] = random.NextDouble() * 100;
+        }
+
+        Console.WriteLine("Массив:");
+
+        foreach (double number in array)
+        {
+            Console.Write(number + " ");
+        }
+
+        double min = array[0];
+        double max = array[0];
+
+        foreach (double number in array)
+        {
+            if (number < min)
+            {
+                min = number;
+            }
+            if (number > max)
+            {
+                max = number;
+            }
+        }
+
+        double difference = max - min;
+
+        Console.WriteLine($"\nРазница между максимальным и минимальным элементами: {difference}");
+
     }
 }
